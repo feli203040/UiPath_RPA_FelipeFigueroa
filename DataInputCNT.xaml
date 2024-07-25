@@ -1,11 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CNTProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CNTProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="aLastName" Type="InArgument(x:String)" />
     <x:Property Name="aEmail" Type="InArgument(x:String)" />
     <x:Property Name="aProvince" Type="InArgument(x:String)" />
+    <x:Property Name="IsDataSuccesfullyInputed" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="LogPath" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>868.8,1044</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>868.8,1844</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -52,6 +54,8 @@
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -116,19 +120,38 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DataInput" sap:VirtualizedContainerService.HintSize="512,979.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DataInput" sap:VirtualizedContainerService.HintSize="691.2,1779.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: :: Guía Telefónica CNT EP ::" sap:VirtualizedContainerService.HintSize="449.6,890.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="0aa2c49b-bf8b-4615-b96f-353496fed068" Version="V2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="628.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"&lt;"+ DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") +"&gt; Inicio proceso DataInput."</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
+    <ui:AppendLine File="{x:Null}" DisplayName="Loguea en archivo log" sap:VirtualizedContainerService.HintSize="628.8,166.4" sap2010:WorkflowViewState.IdRef="AppendLine_1" UseDefaultEncoding="False">
+      <ui:AppendLine.FileName>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">LogPath</CSharpValue>
+        </InArgument>
+      </ui:AppendLine.FileName>
+      <ui:AppendLine.Text>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">"&lt;"+ DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") +"&gt; Inicio proceso DataInput."</CSharpValue>
+        </InArgument>
+      </ui:AppendLine.Text>
+    </ui:AppendLine>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: :: Guía Telefónica CNT EP ::" sap:VirtualizedContainerService.HintSize="628.8,1349.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="0aa2c49b-bf8b-4615-b96f-353496fed068" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,650.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="595.2,1109.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="vCaptchaText" />
               <Variable x:TypeArguments="x:String" Name="vIdImage" />
@@ -139,87 +162,147 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NSelectItem DisplayName="Selecciona el criterio de búsqueda" sap:VirtualizedContainerService.HintSize="353.6,189.6" sap2010:WorkflowViewState.IdRef="NSelectItem_3" Item="Por Nombre" ScopeIdentifier="0aa2c49b-bf8b-4615-b96f-353496fed068" Version="V3">
-              <uix:NSelectItem.Items>
-                <scg:List x:TypeArguments="x:String" Capacity="4">
-                  <x:String>-- Seleccione un criterio de Búsqueda --</x:String>
-                  <x:String>Por Número Telefónico</x:String>
-                  <x:String>Por Razón Social</x:String>
-                  <x:String>Por Nombre</x:String>
-                </scg:List>
-              </uix:NSelectItem.Items>
-              <uix:NSelectItem.Target>
-                <uix:TargetAnchorable BrowserURL="https://micnt.com.ec/cntapp/guia104/php/guia_cntat.php?hflagsubmit=1&amp;cmbcriterio=3&amp;cmbprov2=17&amp;txtusuarioapellido=asdadw&amp;txtusuarionombre=&amp;captchaSelection=dbced49ac3f244e489bc8dd38b32b0edb8a12c95" CVScreenId="8552bf88-4d38-43c2-9010-aed23512acdb" CvElementArea="264, 393, 366, 45" CvType="InputBox" DesignTimeRectangle="266, 395, 362, 42" DesignTimeScaleFactor="1.25" ElementType="DropDown" FullSelectorArgument="&lt;webctrl tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='SELECT' type='' class='form-control' aaname='' /&gt;" Guid="91cdc714-f462-4dd8-8de3-2c6150c3d58b" InformativeScreenshot="f3bad77eafe006f01ebaf7c753c2717f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title=':: Guía Telefónica CNT EP ::' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="8552bf88-4d38-43c2-9010-aed23512acdb" CvTextArea="264, 366, 178, 20" CvTextArgument="Criterio de Busqueda" CvType="Text" DesignTimeRectangle="266, 364, 177, 25" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='' aaname='Criterio de Búsqueda' check:innerText='Criterio de Búsqueda' /&gt;" Guid="71975975-00b0-4a86-b563-91fa943cd2c6" SearchSteps="FuzzySelector, CV" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NSelectItem.Target>
-            </uix:NSelectItem>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Ingresa el apellido" EmptyField="True" sap:VirtualizedContainerService.HintSize="353.6,188" sap2010:WorkflowViewState.IdRef="TypeInto_1">
-              <ui:TypeInto.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5ebf2123-3d51-4fc0-8cfd-358da92d7c2a" InformativeScreenshot="7a0cad4adf937c07b6d780ca62705165" Selector="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:TypeInto.Target>
-              <ui:TypeInto.Text>
-                <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">aLastName</CSharpValue>
-                </InArgument>
-              </ui:TypeInto.Text>
-            </ui:TypeInto>
-            <uix:NSelectItem DisplayName="Selecciona la provincia" sap:VirtualizedContainerService.HintSize="353.6,182.4" sap2010:WorkflowViewState.IdRef="NSelectItem_2" ScopeIdentifier="0aa2c49b-bf8b-4615-b96f-353496fed068" Version="V3">
-              <uix:NSelectItem.Item>
-                <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">aProvince</CSharpValue>
-                </InArgument>
-              </uix:NSelectItem.Item>
-              <uix:NSelectItem.Items>
-                <scg:List x:TypeArguments="x:String" Capacity="25">
-                  <x:String>AZUAY</x:String>
-                  <x:String>BOLIVAR</x:String>
-                  <x:String>CA�AR</x:String>
-                  <x:String>CARCHI</x:String>
-                  <x:String>CHIMBORAZO</x:String>
-                  <x:String>COTOPAXI</x:String>
-                  <x:String>EL ORO</x:String>
-                  <x:String>ESMERALDAS</x:String>
-                  <x:String>GALAPAGOS</x:String>
-                  <x:String>GUAYAS</x:String>
-                  <x:String>IMBABURA</x:String>
-                  <x:String>LOJA</x:String>
-                  <x:String>LOS RIOS</x:String>
-                  <x:String>MANABI</x:String>
-                  <x:String>MORONA SANTIAGO</x:String>
-                  <x:String>NAPO</x:String>
-                  <x:String>ORELLANA</x:String>
-                  <x:String>PASTAZA</x:String>
-                  <x:String>PICHINCHA</x:String>
-                  <x:String>SANTA ELENA</x:String>
-                  <x:String>SANTO DOMINGO DE LOS TSACHILAS</x:String>
-                  <x:String>SUCUMBIOS</x:String>
-                  <x:String>TUNGURAHUA</x:String>
-                  <x:String>ZAMORA CHINCHIPE</x:String>
-                  <x:String>COBERTURA CNT EP</x:String>
-                </scg:List>
-              </uix:NSelectItem.Items>
-              <uix:NSelectItem.Target>
-                <uix:TargetAnchorable BrowserURL="https://micnt.com.ec/cntapp/guia104/php/guia_cntat.php?hflagsubmit=1&amp;cmbcriterio=3&amp;cmbprov2=17&amp;txtusuarioapellido=asdadw&amp;txtusuarionombre=&amp;captchaSelection=dbced49ac3f244e489bc8dd38b32b0edb8a12c95" CVScreenId="24843c18-5f56-4219-97b6-a0ea143d48d0" CvElementArea="264, 668, 366, 46" CvType="InputBox" DesignTimeRectangle="266, 671, 362, 42" DesignTimeScaleFactor="1.25" ElementType="DropDown" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='form-control' aaname='' /&gt;" Guid="fba6ad96-d47f-4c4a-be4f-710bb568173e" ImageBase64="" InformativeScreenshot="00882ff5f696b0b916418cc19ad606e3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title=':: Guía Telefónica CNT EP ::' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target CVScreenId="24843c18-5f56-4219-97b6-a0ea143d48d0" CvTextArea="265, 642, 85, 16" CvTextArgument="Provincia:" CvType="Text" DesignTimeRectangle="266, 640, 89, 25" ElementType="Text" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='lselect' aaname='Provincia: ' check:innerText='Provincia:' /&gt;" Guid="1a2c20a1-d6ca-417e-b914-83ae65101538" SearchSteps="FuzzySelector, CV" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NSelectItem.Target>
-            </uix:NSelectItem>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="532.8,1020.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="496,764.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NSelectItem DisplayName="Selecciona el criterio de búsqueda" sap:VirtualizedContainerService.HintSize="433.6,189.6" sap2010:WorkflowViewState.IdRef="NSelectItem_3" Item="Por Nombre" ScopeIdentifier="0aa2c49b-bf8b-4615-b96f-353496fed068" Version="V3">
+                    <uix:NSelectItem.Items>
+                      <scg:List x:TypeArguments="x:String" Capacity="4">
+                        <x:String>-- Seleccione un criterio de Búsqueda --</x:String>
+                        <x:String>Por Número Telefónico</x:String>
+                        <x:String>Por Razón Social</x:String>
+                        <x:String>Por Nombre</x:String>
+                      </scg:List>
+                    </uix:NSelectItem.Items>
+                    <uix:NSelectItem.Target>
+                      <uix:TargetAnchorable BrowserURL="https://micnt.com.ec/cntapp/guia104/php/guia_cntat.php?hflagsubmit=1&amp;cmbcriterio=3&amp;cmbprov2=17&amp;txtusuarioapellido=asdadw&amp;txtusuarionombre=&amp;captchaSelection=dbced49ac3f244e489bc8dd38b32b0edb8a12c95" CVScreenId="8552bf88-4d38-43c2-9010-aed23512acdb" CvElementArea="264, 393, 366, 45" CvType="InputBox" DesignTimeRectangle="266, 395, 362, 42" DesignTimeScaleFactor="1.25" ElementType="DropDown" FullSelectorArgument="&lt;webctrl tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='SELECT' type='' class='form-control' aaname='' /&gt;" Guid="91cdc714-f462-4dd8-8de3-2c6150c3d58b" InformativeScreenshot="f3bad77eafe006f01ebaf7c753c2717f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title=':: Guía Telefónica CNT EP ::' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CVScreenId="8552bf88-4d38-43c2-9010-aed23512acdb" CvTextArea="264, 366, 178, 20" CvTextArgument="Criterio de Busqueda" CvType="Text" DesignTimeRectangle="266, 364, 177, 25" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='' aaname='Criterio de Búsqueda' check:innerText='Criterio de Búsqueda' /&gt;" Guid="71975975-00b0-4a86-b563-91fa943cd2c6" SearchSteps="FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NSelectItem.Target>
+                  </uix:NSelectItem>
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Ingresa el apellido" EmptyField="True" sap:VirtualizedContainerService.HintSize="433.6,188" sap2010:WorkflowViewState.IdRef="TypeInto_1">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5ebf2123-3d51-4fc0-8cfd-358da92d7c2a" InformativeScreenshot="7a0cad4adf937c07b6d780ca62705165" Selector="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                    <ui:TypeInto.Text>
+                      <InArgument x:TypeArguments="x:String">
+                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">aLastName</CSharpValue>
+                      </InArgument>
+                    </ui:TypeInto.Text>
+                  </ui:TypeInto>
+                  <uix:NSelectItem DisplayName="Selecciona la provincia" sap:VirtualizedContainerService.HintSize="433.6,189.6" sap2010:WorkflowViewState.IdRef="NSelectItem_2" ScopeIdentifier="0aa2c49b-bf8b-4615-b96f-353496fed068" Timeout="5" Version="V3">
+                    <uix:NSelectItem.Item>
+                      <InArgument x:TypeArguments="x:String">
+                        <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">aProvince</CSharpValue>
+                      </InArgument>
+                    </uix:NSelectItem.Item>
+                    <uix:NSelectItem.Items>
+                      <scg:List x:TypeArguments="x:String" Capacity="25">
+                        <x:String>AZUAY</x:String>
+                        <x:String>BOLIVAR</x:String>
+                        <x:String>CA�AR</x:String>
+                        <x:String>CARCHI</x:String>
+                        <x:String>CHIMBORAZO</x:String>
+                        <x:String>COTOPAXI</x:String>
+                        <x:String>EL ORO</x:String>
+                        <x:String>ESMERALDAS</x:String>
+                        <x:String>GALAPAGOS</x:String>
+                        <x:String>GUAYAS</x:String>
+                        <x:String>IMBABURA</x:String>
+                        <x:String>LOJA</x:String>
+                        <x:String>LOS RIOS</x:String>
+                        <x:String>MANABI</x:String>
+                        <x:String>MORONA SANTIAGO</x:String>
+                        <x:String>NAPO</x:String>
+                        <x:String>ORELLANA</x:String>
+                        <x:String>PASTAZA</x:String>
+                        <x:String>PICHINCHA</x:String>
+                        <x:String>SANTA ELENA</x:String>
+                        <x:String>SANTO DOMINGO DE LOS TSACHILAS</x:String>
+                        <x:String>SUCUMBIOS</x:String>
+                        <x:String>TUNGURAHUA</x:String>
+                        <x:String>ZAMORA CHINCHIPE</x:String>
+                        <x:String>COBERTURA CNT EP</x:String>
+                      </scg:List>
+                    </uix:NSelectItem.Items>
+                    <uix:NSelectItem.Target>
+                      <uix:TargetAnchorable BrowserURL="https://micnt.com.ec/cntapp/guia104/php/guia_cntat.php?hflagsubmit=1&amp;cmbcriterio=3&amp;cmbprov2=17&amp;txtusuarioapellido=asdadw&amp;txtusuarionombre=&amp;captchaSelection=dbced49ac3f244e489bc8dd38b32b0edb8a12c95" CVScreenId="24843c18-5f56-4219-97b6-a0ea143d48d0" CvElementArea="264, 668, 366, 46" CvType="InputBox" DesignTimeRectangle="266, 671, 362, 42" DesignTimeScaleFactor="1.25" ElementType="DropDown" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='form-control' aaname='' /&gt;" Guid="fba6ad96-d47f-4c4a-be4f-710bb568173e" ImageBase64="" InformativeScreenshot="00882ff5f696b0b916418cc19ad606e3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title=':: Guía Telefónica CNT EP ::' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target CVScreenId="24843c18-5f56-4219-97b6-a0ea143d48d0" CvTextArea="265, 642, 85, 16" CvTextArgument="Provincia:" CvType="Text" DesignTimeRectangle="266, 640, 89, 25" ElementType="Text" FullSelectorArgument="&lt;webctrl idx='2' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='lselect' aaname='Provincia: ' check:innerText='Provincia:' /&gt;" Guid="1a2c20a1-d6ca-417e-b914-83ae65101538" SearchSteps="FuzzySelector, CV" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NSelectItem.Target>
+                  </uix:NSelectItem>
+                  <Assign sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">
+                        <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">IsDataSuccesfullyInputed</CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="499.2,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence sap:VirtualizedContainerService.HintSize="496,373.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,176" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error">
+                        <ui:LogMessage.Message>
+                          <InArgument x:TypeArguments="x:Object">
+                            <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">"&lt;"+ DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") +"&gt; Error al ingresar los datos."</CSharpValue>
+                          </InArgument>
+                        </ui:LogMessage.Message>
+                      </ui:LogMessage>
+                      <Assign sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">IsDataSuccesfullyInputed</CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>

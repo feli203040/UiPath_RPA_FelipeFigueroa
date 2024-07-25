@@ -1,0 +1,10 @@
+﻿<25/07/2024 11:58:45.831> Inicio proceso ingreso de datos.
+<25/07/2024 11:59:11.106Datos ingresados. Apellido: Figueroa Provincia: PICHINCHAMail: feli203040@gmail.com
+<25/07/2024 11:59:11.158> Los datos son válidos.
+<25/07/2024 12:02:39.681> Inicio proceso ingreso de datos.
+<25/07/2024 12:03:01.028Datos ingresados. Apellido: Figueroa Provincia: PICHINCHAMail: feli203040@gmail.com
+<25/07/2024 12:03:01.076> Los datos son válidos.
+<25/07/2024 12:03:01.163> Inicio proceso DataInput.
+<25/07/2024 12:03:04.676> Inicio proceso resolve captcha.
+<25/07/2024 12:03:13.918> Inicio proceso DataExtraction.
+<25/07/2024 12:03:55.237> Correo Electrònico Enviado

@@ -186,7 +186,7 @@
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Boolean">
-                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">LastName.All(char.IsLetter)</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_45">LastName.All(char.IsLetter) &amp;&amp; !string.IsNullOrEmpty(LastName)</CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>

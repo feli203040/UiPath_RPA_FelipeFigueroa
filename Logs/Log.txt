@@ -8,3 +8,33 @@
 <25/07/2024 12:03:04.676> Inicio proceso resolve captcha.
 <25/07/2024 12:03:13.918> Inicio proceso DataExtraction.
 <25/07/2024 12:03:55.237> Correo Electrònico Enviado
+<25/07/2024 12:26:20.095> Inicio proceso ingreso de datos.
+<25/07/2024 12:26:34.932> Datos ingresados. Apellido:  Provincia: PICHINCHA Mail: mail
+<25/07/2024 12:26:34.984> Datos ingresados no son validos:
+El correo ingresado no es valido
+
+<25/07/2024 12:26:39.353> Inicio proceso ingreso de datos.
+<25/07/2024 12:29:22.539> Inicio proceso ingreso de datos.
+<25/07/2024 12:29:35.263> Datos ingresados. Apellido:  Provincia: PICHINCHA Mail: felipe
+<25/07/2024 12:29:35.334> Datos ingresados no son validos:
+El apellido solo debe contener letras
+El correo ingresado no es valido
+
+<25/07/2024 12:29:40.868> Inicio proceso ingreso de datos.
+<25/07/2024 12:30:04.752> Datos ingresados. Apellido: De las Mecedes Provincia: PICHINCHA Mail: feli203040@gmail.com
+<25/07/2024 12:30:04.780> Datos ingresados no son validos:
+El apellido solo debe contener letras
+
+<25/07/2024 12:30:08.238> Inicio proceso ingreso de datos.
+<25/07/2024 12:30:42.125> Inicio proceso ingreso de datos.
+<25/07/2024 12:30:54.127> Datos ingresados. Apellido: Figueroa Provincia:  Mail: 
+<25/07/2024 12:30:54.183> Datos ingresados no son validos:
+El nombre de la provincia debe ser solo en letras mayúsculas
+El correo ingresado no es valido
+
+<25/07/2024 12:31:02.214> Inicio proceso ingreso de datos.
+<25/07/2024 12:31:13.555> Inicio proceso ingreso de datos.
+<25/07/2024 12:31:31.845> Datos ingresados. Apellido: Figueroa Provincia: QUITO Mail: feli203040@gmail.com
+<25/07/2024 12:31:31.919> Los datos son válidos.
+<25/07/2024 12:31:32.017> Inicio proceso DataInput.
+<25/07/2024 12:31:50.293> Correo Electrònico Enviado
